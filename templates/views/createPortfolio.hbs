@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/bootstrap-4/css/bootstrap.min.css">
+
+
+
+    <!-- Quill Theme included stylesheets -->
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="/bootstrap-4/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+
+    <title>Create Portfolio</title>
+
+</head>
+<body>
+
+
+    {{>header}}
+
+    <h2 class="text-center pt-3">Create Portfolio</h2>
+
+    {{#with user}}
+
+    <form id="form" class="container-fluid pb-5" method="POST" action="/createPortfolio/{{_id}}" enctype="multipart/form-data">
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label for="name">Full Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{name}}" required>
+            </div>
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label>Age:</label>
+                <input type="number" class="form-control" id="age" name="age" value="{{age}}" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label for="name">City / Country:</label>
+                <input type="text" class="form-control" id="city" name="city" value="{{city}}" required>
+            </div>
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label>School / College:</label>
+                <input type="text" class="form-control" id="school" name="school" value="{{school}}" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label for="name">Website:</label>
+                <input type="text" class="form-control" id="website" name="website" value="{{website}}" required>
+            </div>
+        </div>
+
+        
+        <div class="row pt-3">
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label for="exampleFormControlTextarea1">About</label>
+                <input id="about" name="about" style="display: none">
+                <div id="editor">
+                    <p>Hello World!</p>
+                    <p>Some initial <strong>bold</strong> text</p>
+                    <p><br></p>
+                </div><br>
+
+                {{!-- <label for="exampleFormControlTextarea1">About</label>
+                <textarea class="form-control" id="about" name="about" rows="4" required>{{about}}</textarea> --}}
+            </div>
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label for="exampleFormControlTextarea1">About</label>
+                <input id="about" name="about" style="display: none">
+                <div id="editor">
+                    <p>Hello World!</p>
+                    <p>Some initial <strong>bold</strong> text</p>
+                    <p><br></p>
+                </div><br>
+{{!--                 
+                <label for="exampleFormControlTextarea1">Experience / Projects</label>
+                <textarea class="form-control" id="projects" name="projects" rows="4" required>{{projects}}</textarea> --}}
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label for="exampleFormControlTextarea1">Skills</label>
+                <textarea class="form-control" id="skills" name="skills" rows="4" required>{{skills}}</textarea>
+            </div>
+        </div>
+
+        <br><label for="exampleFormControlTextarea1">Upload Image (size limit: 3MB)</label>
+        <br><input type="file" name="image" id="image"><br>        
+
+
+
+
+        <button class="btn btn-primary mt-3" type="submit">Create Portfolio</button>
+    </form>
+
+    {{/with}}
+
+
+        {{!-- Quill --}}
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+
+    <!-- Initialize Quill editor -->
+    <script>
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+
+    const form = document.getElementById('form');
+    form.addEventListener('submit', function (event) {
+        var elem = document.getElementById('about');
+        var content = quill.root.innerHTML;
+        elem.value = content;
+    });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+        <!-- Primary Meta Tags -->
+    <meta name="title" content="Zoolnearme">
+    <meta name="description" content="Zoolnearme brings people together through live experiences. Discover events that match your passions, or create your own, all from the comforts of your home.">
+    <meta name="keywords" content="zoolnearme, zoolnearme srinagar,zool,srinagar,kashmir,events,event,performance, music, events in srinagar, events in kashmir, events around me, what to do in kashmir", "what to do in srinagar">
+
+    <link rel="icon" href="/favicon_io/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+
+
+
+    <link rel="stylesheet" href="/bootstrap-4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="/bootstrap-4/js/bootstrap.min.js"></script>
+    <title>Shawl Portfolio Builder</title>
+</head>
+<body>
+
+
+    {{>header}}
+
+
+
+    <div class="container-fluid pb-5">
+      <div class="row">
+        
+      </div>
+    </div>
+
+
+
+  <main>
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Create your Online Portfolio for free!</h1>
+          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+          <p>
+            <a href="/login" class="btn btn-dark my-2 p-2">Get Started!</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <h2 class="fw-light text-center">Check out other people's portfolios!</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+          {{#each users}}
+          <div class="col-lg-6 pt-4">
+            <div class="card shadow-sm">
+              <a href="/portfolios/{{id}}" style="text-decoration:none; color:black">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
+              <div class="card-body">
+                <h3 class="card-text">{{name}}'s Portfolio</h3>
+              </div>
+              </a>
+            </div>
+          </div>
+
+        {{/each}}
+
+
+        </div>
+      </div>
+    </div>
+  </main>
+   
+  
+
+
+  {{!-- {{>footer}} --}}
+
+  </body>
+</html>
