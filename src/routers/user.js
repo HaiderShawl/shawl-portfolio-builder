@@ -59,8 +59,8 @@ const upload = multer({
 
 router.post('/createPortfolio/:id', upload.single('image') , async (req, res) => {
     try {
+        console.log(req.body)
         const buffer = await sharp(req.file.buffer).jpeg().toBuffer()
-
         req.body.image = buffer.toString('base64')
 
         const user = await User.findById(req.params.id)
@@ -69,16 +69,19 @@ router.post('/createPortfolio/:id', upload.single('image') , async (req, res) =>
         user['school'] = req.body.school
         user['city'] = req.body.city
         user['website'] = req.body.website
-        user['about'] = req.body.about
-        user['projects'] = req.body.projects
-        user['skills'] = req.body.skills
+        user['resume'] = req.body.resume
         user["image"] = req.body.image
+        user['about'] = req.body.about
+        user['theme'] = req.body.inlineRadioOptions
+
+
+        // user['projects'] = req.body.projects
+        // user['skills'] = req.body.skills
 
 
         const updatedUser = await User.findByIdAndUpdate(req.params.id, user, { new: true, runValidators: true })
 
-        console.log(user)
-        res.render('portfolio', {
+        res.render(user.theme, {
             user
         })
 
@@ -93,7 +96,7 @@ router.get('/portfolios/:id', async (req, res) => {
     try {
         var user = await User.findById(req.params.id)
         user.image = user.image.toString('base64')
-        res.render('portfolio', {
+        res.render(user.theme, {
             user
         })
     } catch (e) {
@@ -106,7 +109,11 @@ router.get('/portfolios/:id', async (req, res) => {
 //search
 router.post('/search', async (req, res) => {
     try {
-        res.send(req.body)
+        const user = await User.findOne({ name: req.body.name })
+        user.image = user.image.toString('base64')
+        res.render(user.theme, {
+            user
+        })
     } catch (e) {
         res.send(e)
     }
@@ -115,104 +122,20 @@ router.post('/search', async (req, res) => {
 
 
 
-// //public
-// // viewing events of a category
-// router.get('/events/category/:type', async (req, res) => {
-//     const events = await User.find({ type: req.params.type })
-//     res.render('general', {
-//         title: req.params.type,
-//         events
-//     })
-// })
+router.get('/preview/:id', async (req, res) => {
+    try {
+        const user = await User.find()
+        res.render(req.params.id, {
+            user: user[0]
+        })
 
-// //reading event
-// router.get('/events/:id', async (req, res) => {
-//     try {
-//         var event = await User.findById(req.params.id)
-//         event.image = event.image.toString('base64')
-        
-//         res.render('eventPage', {
-//             event
-//         })
-//     } catch (e) {
-//         res.send(e)
-//     }
-// })
+    } catch (e) {
+        res.send(e)
+    }
+}) 
 
 
 
-
-// //private
-// //creating new event
-
-// router.get('/events/create/:pass', auth, (req, res) => {
-//     res.render('createEvent', {
-//         title: "Create Event"
-//     })
-// })
-
-// router.post('/events/create', upload.single('image') , async (req, res) => {
-//     const buffer = await sharp(req.file.buffer).jpeg().toBuffer()
-//     req.body.image = buffer.toString('base64')
-
-//     const event = new User(req.body) 
-
-//     try {
-//         const newevent = await event.save()
-//         res.render('eventPage', {
-//             event: newevent
-//         })
-//     } catch (e) {
-//         res.send(e)
-//     }
-// })
-
-
-
-
-
-
-
-// //updating event
-
-// router.get('/events/update/:id', auth, async (req, res) => {
-//     try {
-//         const event = await User.findById(req.params.id)
-//         res.render('updateEvent', {
-//             event
-//         })
-//     } catch (e) {
-//         res.send(e)
-//     }
-    
-// })
-
-// router.post('/events/update/:id', async (req, res) => {
-//     try {
-//         const updatedEvent = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
-
-//         res.render('eventPage', {
-//             event: updatedEvent
-//         })
-//     } catch (e) {
-//         res.send(e)
-//     }
-    
-// })
-
-
-// // deleting event
-// router.get('/events/delete/:id', auth, async (req, res) => {
-//     try {
-//         await User.findByIdAndDelete(req.params.id)
-        
-//         res.send("Event deleted successfully!")
-        
-//     } catch (e) {
-//         res.send(e)
-//     }
-    
-// })
 
 
 

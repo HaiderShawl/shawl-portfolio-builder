@@ -47,6 +47,12 @@ const User = mongoose.model('users', {
     image: {
         type: String,
     },
+    theme: {
+        type: String
+    },
+    resume: {
+        type: String
+    }
 })
 
 

@@ -54,49 +54,79 @@
                 <input type="text" class="form-control" id="school" name="school" value="{{school}}" required>
             </div>
         </div>
+        
 
         <div class="row">
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label for="exampleFormControlTextarea1">About:</label>
+                <textarea class="form-control" id="about" name="about" rows="4" required>{{about}}</textarea>
+            </div>
             <div class="col-sm-12 col-md-6 pt-3">
                 <label for="name">Website:</label>
                 <input type="text" class="form-control" id="website" name="website" value="{{website}}" required>
             </div>
         </div>
 
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6 pt-3">
+                <label for="theme">Theme:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="one" checked>
+                    <label class="form-check-label" for="inlineRadio1">
+                        Portfolio 1 <br><a href="/preview/one" target="_blank">View</a>
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="two">
+                    <label class="form-check-label" for="inlineRadio2">
+                        Portfolio 2 <br><a href="/preview/two" target="_blank">View</a>
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="three">
+                    <label class="form-check-label" for="inlineRadio3">
+                        Portfolio 3 <br><a href="/preview/three" target="_blank">View</a>
+                    </label>
+                </div>
+            </div>
+        </div>
+
         
         <div class="row pt-3">
             <div class="col-sm-12 col-md-6 pt-3">
-                <label for="exampleFormControlTextarea1">About</label>
-                <input id="about" name="about" style="display: none">
-                <div id="editor">
-                    <p>Hello World!</p>
-                    <p>Some initial <strong>bold</strong> text</p>
-                    <p><br></p>
-                </div><br>
+                <label for="exampleFormControlTextarea1">Resume</label>
+                <input id="resume" name="resume" style="display: none">
+                <div class="container">
+                    <div id="editor">
+                        <h2><strong>Skills</strong></h2>
+                        <ul>
+                            <li>Skill 1</li>
+                            <li>Skill 2</li>
+                            <li>Skill 3</li>
+                        </ul>
+
+                        <h2><strong>Experience</strong></h2>
+                        <ul>
+                            <li>Experience 1</li>
+                            <li>Experience 2</li>
+                            <li>Experience 3</li>
+                        </ul>
+
+
+                    </div>
+                </div>
+                
 
                 {{!-- <label for="exampleFormControlTextarea1">About</label>
                 <textarea class="form-control" id="about" name="about" rows="4" required>{{about}}</textarea> --}}
             </div>
-            <div class="col-sm-12 col-md-6 pt-3">
-                <label for="exampleFormControlTextarea1">About</label>
-                <input id="about" name="about" style="display: none">
-                <div id="editor">
-                    <p>Hello World!</p>
-                    <p>Some initial <strong>bold</strong> text</p>
-                    <p><br></p>
-                </div><br>
-{{!--                 
-                <label for="exampleFormControlTextarea1">Experience / Projects</label>
-                <textarea class="form-control" id="projects" name="projects" rows="4" required>{{projects}}</textarea> --}}
-            </div>
-        </div>
-        <div class="row pt-3">
-            <div class="col-sm-12 col-md-6 pt-3">
-                <label for="exampleFormControlTextarea1">Skills</label>
-                <textarea class="form-control" id="skills" name="skills" rows="4" required>{{skills}}</textarea>
-            </div>
         </div>
 
-        <br><label for="exampleFormControlTextarea1">Upload Image (size limit: 3MB)</label>
+        
+        
+
+        <br><label for="exampleFormControlTextarea1">Profile Image (size limit: 3MB)</label>
         <br><input type="file" name="image" id="image"><br>        
 
 
@@ -121,7 +151,7 @@
 
     const form = document.getElementById('form');
     form.addEventListener('submit', function (event) {
-        var elem = document.getElementById('about');
+        var elem = document.getElementById('resume');
         var content = quill.root.innerHTML;
         elem.value = content;
     });

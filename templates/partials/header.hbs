@@ -8,13 +8,10 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive"> 
-				<ul class="navbar-nav ml-auto">
-					<li><a class="nav-item nav-link" href="/login">Login / Signup</a></li>
-				</ul>
-				
-				<form class="d-flex" method="POST" action="/search" >
+
+				<form class="d-flex ml-auto" method="POST" action="/search" >
 					<div>
-						<input class="form-control me-2" name="name" id="name" list="datalistOptions" type="search" placeholder="Search by name" aria-label="Search">
+						<input class="form-control me-2" name="name" id="name" list="datalistOptions" type="search" placeholder="Search people" aria-label="Search">
 						<datalist id="datalistOptions" name="datalist">
 							{{#each users}}
 							<option value="{{name}}">
@@ -24,6 +21,10 @@
 					
 					<button class="btn btn-outline-dark ml-2" type="submit">Search</button>
 				</form>
+
+				<ul class="navbar-nav ml-auto">
+					<li><a class="nav-item nav-link" href="/login">Login / Signup</a></li>
+				</ul>
 
 			</div>
 		</div>
