@@ -59,24 +59,24 @@ const upload = multer({
 
 router.post('/createPortfolio/:id', upload.single('image') , async (req, res) => {
     try {
-        console.log(req.body)
-        const buffer = await sharp(req.file.buffer).jpeg().toBuffer()
-        req.body.image = buffer.toString('base64')
 
         const user = await User.findById(req.params.id)
+
+        if (req.file != undefined) {
+            const buffer = await sharp(req.file.buffer).jpeg().toBuffer()
+            req.body.image = buffer.toString('base64')
+            user["image"] = req.body.image
+        }
+        
+
         user['name'] = req.body.name
         user['age'] = req.body.age
         user['school'] = req.body.school
         user['city'] = req.body.city
         user['website'] = req.body.website
         user['resume'] = req.body.resume
-        user["image"] = req.body.image
         user['about'] = req.body.about
         user['theme'] = req.body.inlineRadioOptions
-
-
-        // user['projects'] = req.body.projects
-        // user['skills'] = req.body.skills
 
 
         const updatedUser = await User.findByIdAndUpdate(req.params.id, user, { new: true, runValidators: true })
