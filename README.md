@@ -2,7 +2,7 @@
 
 A web app which allows you to create your online portfolio website with no coding skills required.
 <br><hr>
-<img src="https://user-images.githubusercontent.com/34603371/125611349-99a4d786-75a5-4ebd-af13-c9914a2d15a1.png" height="400px" width="800px">
+<img src="https://user-images.githubusercontent.com/34603371/125611349-99a4d786-75a5-4ebd-af13-c9914a2d15a1.png">
 
 
 
