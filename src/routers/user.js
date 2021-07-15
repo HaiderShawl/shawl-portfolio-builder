@@ -95,7 +95,10 @@ router.post('/createPortfolio/:id', upload.single('image') , async (req, res) =>
 router.get('/portfolios/:id', async (req, res) => {
     try {
         var user = await User.findById(req.params.id)
-        user.image = user.image.toString('base64')
+        if (user.image != undefined) {
+            user.image = user.image.toString('base64')
+        }
+
         res.render(user.theme, {
             user
         })

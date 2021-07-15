@@ -44,8 +44,10 @@ app.use(userRouter)
 app.get('', async (req, res) => {
     try {
         const users = await User.find({})
+        let activeUser = []
+        users.map(user => {if (user.name) {activeUser.push(user)} })
         res.render('index', {
-            users
+            users: activeUser
         })
     } catch (e) {
         res.send(e)
