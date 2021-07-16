@@ -29,6 +29,7 @@ router.post('/login', async (req, res) => {
         }
 
     } else {
+        req.body.resume = "<h2><strong>Skills</strong></h2><ul><li>Skill 1</li><li>Skill 2</li><li>Skill 3</li></ul><h2><strong>Experience</strong></h2><ul><li>Experience 1</li><li>Experience 2</li><li>Experience 3</li></ul>"
         const user = new User(req.body) 
         try {
             const newUser = await user.save()
